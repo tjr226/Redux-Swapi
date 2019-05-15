@@ -6,15 +6,15 @@ export const SUCCESS = "SUCCESS";
 export const FAILURE = "FAILURE";
 
 export const getStarWars = () => dispatch => {
-    console.log(FETCHING)
+    // console.log(FETCHING)
     dispatch({ type: "FETCHING" })
     Axios.get('https://swapi.co/api/people/')
         .then(res => {
-            console.log("res successful", res);  
+            // console.log("res successful", res);  
             dispatch({ type: SUCCESS, payload: res.data.results });
         })
         .catch(err => {
-            console.log(err.response)
-            dispatch({ type: FAILURE, payload: `${err.response.status} ${err.response.data}` })  
+            // console.log(err.response)
+            dispatch({ type: FAILURE, payload: `${err.response.status} Error` })  
         })
 }
