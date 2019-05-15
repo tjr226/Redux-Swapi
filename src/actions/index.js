@@ -14,11 +14,12 @@ export const FAILURE = "FAILURE";
 export const getStarWars = () => dispatch => {
     dispatch({ type: FETCHING }); 
     Axios.get('https://swapi.co/api/people/')
-        .then(res => console.log(res))
-        .catch(err = console.log(err))
-
-    return {
-        type: FETCHING,
-        payload: something
-    }
+        .then(res => {
+            console.log(res);  
+            dispatch({ type: SUCCESS, payload: res.data });
+        })
+        .catch(err => {
+            console.log(err.response)
+            dispatch({ type: FAILURE, payload: `${err.response.status} ${err.response.data}` })  
+        })
 }
